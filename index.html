@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no,minimal-ui">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="apple-mobile-web-app-title" content="微星战争">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<!--忽略自动识别数字为电话号码-->
+		<meta content="telephone=no" name="format-detection" />
+		<!--忽略自动识别邮箱账号-->
+		<meta content="email=no" name="format-detection" />
+		<!-- uc强制竖屏 -->
+		<meta name="screen-orientation" content="portrait">
+		<!-- UC强制全屏 -->
+		<meta name="full-screen" content="yes">
+		<!-- UC应用模式 -->
+		<meta name="browsermode" content="application">
+		<!-- QQ强制竖屏 -->
+		<meta name="x5-orientation" content="portrait">
+		<!-- QQ强制全屏 -->
+		<meta name="x5-fullscreen" content="true">
+		<!-- QQ应用模式 -->
+		<meta name="x5-page-mode" content="app">
+		<title>标题</title>
+		<link rel="shortcut icon" href="favicon.ico">
+		<link href="css/pro/iconfont.css" rel="stylesheet" type="text/css" />
+		<script src="app/config.js" type="text/javascript"></script>
+		<script src="app/common.js" type="text/javascript"></script>
+		<!-- Loading Mine CSS -->
+		<link rel="stylesheet" href="css/index.css" />
+	</head>
+
+	<body>
+		<!-- 游戏区域 -->
+		<div id='game-area' class='layer'>
+			<canvas id="bg">
+				对不起，您的浏览器不支持Canvas，请更新尝试更换其它浏览器尝试游戏。
+			</canvas>
+			<canvas id='path'></canvas>
+			<canvas id='move'></canvas>
+			<canvas id='star'></canvas>
+			<canvas id='ui'></canvas>
+		</div>
+		<!-- 游戏控制 -->
+		<div id='game-control' style='display: none' class='layer'>
+			<div id="mine-info" class='info'>
+				<div class='user-pic'>
+				</div>
+				<div class='item race iconfont icon-Dalek'>
+				</div>
+				<div class='item armyNum'>
+					0</div>
+				<div class='item chat iconfont icon-message'>
+				</div>
+			</div>
+			<div id="enermy-info" class='info'>
+				<div class='user-pic'>
+				</div>
+				<div class='item race iconfont icon-wenhao'>
+				</div>
+				<div class='item armyNum'>
+					0</div>
+				<div class='item chat iconfont icon-add'>
+				</div>
+			</div>
+		</div>
+		<!-- 游戏结果 -->
+		<div id='game-result' class='layer' style='display: none'>
+			<div class='content'>
+				<div id='info' class='result'>
+				</div>
+				<div id='win' class='result mine'>
+					胜利</div>
+				<div id='lose' class='result enermy'>
+					失败</div>
+				<div id='even' class='result middle'>
+					平局</div>
+				<div class='control'>
+					<div id='return' class='vbtn'>
+						返回主页</div>
+					<div id='battle' class='vbtn'>
+						再来一局</div>
+				</div>
+			</div>
+			<div class='shield'>
+			</div>
+		</div>
+		<!-- 游戏准备 -->
+		<div id='game-prepare' style='display: none' class='layer'>
+			<div class='content'>
+				<div class='race-list'>
+					<div class="list-title">选择种族</div>
+					<ul>
+						<li id='Dalek' class='race iconfont icon-Dalek active'>
+							<!--<div class='detail'>&nbsp;&nbsp;&nbsp;&nbsp;Dalek具有强大的战斗智商，其擅长的<i>战斗黑科技</i>使其在交战状态下仍然可以进行军队生产</div>-->
+						</li>
+						<li id='Tardis' class='race iconfont icon-Tardis'>
+							<!--<div class='detail'>
+								&nbsp;&nbsp;&nbsp;&nbsp;<i>Tardis</i>又被成为<i>时间领主</i>，对于时间的领悟让他们能够更迅速的穿梭于各个星系中</div>-->
+						</li>
+						<li id='Zygon' class='race iconfont icon-Zygon'>
+							<!--<div class='detail'>
+								&nbsp;&nbsp;&nbsp;&nbsp;早期的星际漂泊让<i>Zygon</i>能够快速适应新的星球环境，提高所处星球的<i>生产能力</i></div>-->
+						</li>
+						<li id='Random' class='race iconfont icon-sort'>
+							<!--<div class='detail'>
+								&nbsp;&nbsp;&nbsp;&nbsp;<i>随机</i>选择一个种族进行游戏</div>-->
+						</li>
+					</ul>
+				</div>
+				<div class='map-list'>
+					<div class="list-title">选择地图</div>
+					<ul>
+						<li id='1' class="map active" style="background-image: url(img/1.jpg);">
+							<!--<div class='detail'>
+								</div>-->
+						</li>
+						<li id='2' class="map" style="background-image: url(img/2.jpg);">
+							<!--<div class='detail'>
+								</div>-->
+						</li>
+						<li id='3' class="map" style="background-image: url(img/3.jpg);">
+							<!--<div class='detail'>
+								</div>-->
+						</li>
+						<li id='4' class="map" style="background-image: url(img/4.jpg);">
+							<!--<div class='detail'>
+								</div>-->
+						</li>
+					</ul>
+				</div>
+				<div class="cur-status">
+					<div class="cur-race iconfont icon-Dalek"></div>
+				</div>
+				<div id='startMatch' class="vbtn">
+					开始匹配
+					<span class="line line-top "></span>
+					<span class="line line-bottom"></span>
+					<span class="line line-left "></span>
+					<span class="line line-right "></span>
+				</div>
+				<div id='status'>
+				</div>
+			</div>
+		</div>
+		<!-- 主界面 -->
+		<div id="main-menu" class='layer'>
+			<div class='content'>
+				<div class='logo-area'>
+					<div class='iconfont icon-logo game-logo'>
+					</div>
+					<div class='game-name'>
+						微星战争</div>
+					<div class='game-enname'>
+						miniStarWar</div>
+				</div>
+				<ul class="menu-list">
+					<li id='startGame' class='vbtn'>开始游戏
+						<span class="line line-top "></span>
+						<span class="line line-bottom"></span>
+						<span class="line line-left "></span>
+						<span class="line line-right "></span>
+					</li>
+					<li id='learnGame' class='vbtn' style="top: 120px; ">游戏教程
+						<span class="line line-top "></span>
+						<span class="line line-bottom"></span>
+						<span class="line line-left "></span>
+						<span class="line line-right "></span> </li>
+					<li id='developer' class='vbtn' style="top: 240px; ">开发者工具
+						<span class="line line-top "></span>
+						<span class="line line-bottom"></span>
+						<span class="line line-left "></span>
+						<span class="line line-right "></span> </li>
+					<li id='about' class='vbtn' style="top: 360px; ">关于
+						<span class="line line-top "></span>
+						<span class="line line-bottom"></span>
+						<span class="line line-left "></span>
+						<span class="line line-right "></span> </li>
+				</ul>
+				<div id='version'>
+				</div>
+			</div>
+		</div>
+		<!-- Loading JQuery -->
+		<script src="js/jquery/jquery.min.js "></script>
+		</script>
+		<!-- Loading Cookie JS -->
+		<script src="js/jquery/jquery.cookie.js " type="text/javascript "></script>
+		<script src="js/jquery/jquery.jsoncookie.js " type="text/javascript "></script>
+		<!-- Loading MD5 JS -->
+		<script src="js/MD5.js " type="text/javascript "></script>
+		<!-- Loading Mine JS -->
+		<script src="app/index.js "></script>
+	</body>
+
+</html>
