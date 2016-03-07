@@ -16,5 +16,9 @@
   已实现：界面切换、游戏地图选择、核心通信、对战模块
   待实现：用户注册、游戏教程、地图编辑器（当前地图封装在server.js中的map对象中）
   
-  
+【游戏界面】：
+![image](https://github.com/Vicfeel/miniStarWar/blob/master/screenshot/main.png)
+![image](https://github.com/Vicfeel/miniStarWar/blob/master/screenshot/prepare.png)
+![image](https://github.com/Vicfeel/miniStarWar/blob/master/screenshot/gaming.png)
+
 【转载请注明出处】
